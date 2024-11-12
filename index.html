@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oven Conversion Calculator</title>
+</head>
+<body>
+    <h1>Oven Conversion Calculator</h1>
+    <h2>Convert cooking time for different temperature</h2>
+    <form>
+        <div>
+            <label for="originalTemp">Original temperature in ℃: </label>
+            <input type="number" id="originalTemp" required />
+        </div>
+        <div>
+            <label for="customTemp">Custom temperature in ℃: </label>
+            <input type="number" id="customTemp" required />
+        </div>
+        <div>
+            <label for="originalCookingTime">Original cooking time in minutes: </label>
+            <input type="number" id="originalCookingTime" required />
+        </div>
+        <div>
+            <input type="submit" value="Convert" />
+        </div>
+    </form>
+    <p>Custom cooking time in minutes:<span id="customCookingTime"></span></p>
+    <a href="https://thestonesoup.com/adjust-cooking-times-for-different-temperatures/">Source</a>
+    <!-- To-do: Add https://www.marthastewart.com/8071049/convection-oven-recipe-conversion. -->
+    <script>
+        const celsiusToFahrenheit = celsius => (celsius * 9/5) + 32
+
+        document.querySelector('form').addEventListener('submit', event => {
+            event.preventDefault()
+            document.querySelector('#customCookingTime').textContent = ` ${Math.round(document.getElementById('originalCookingTime').value * (celsiusToFahrenheit(document.getElementById('originalTemp').value) / celsiusToFahrenheit(document.getElementById('customTemp').value)))}`
+        })
+    </script>
+</body>
+</html>
